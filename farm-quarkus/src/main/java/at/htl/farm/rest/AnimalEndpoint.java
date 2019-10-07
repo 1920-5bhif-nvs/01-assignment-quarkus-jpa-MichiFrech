@@ -20,7 +20,6 @@ public class AnimalEndpoint {
     @Inject
     EntityManager em;
 
-    @Path("findall")
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
@@ -81,7 +80,7 @@ public class AnimalEndpoint {
     public Response newCow(Cow cow) {
         em.persist(cow);
         em.flush();
-        return Response.created(URI.create("http://localhost:8080/farm/rs/animal/find/" + cow.getId())).build();
+        return Response.created(URI.create("http://localhost:8080/farm/api/animal/find/" + cow.getId())).build();
     }
 
     @Path("new/pork")
@@ -91,7 +90,7 @@ public class AnimalEndpoint {
     public Response newPork(Pork pork){
         em.persist(pork);
         em.flush();
-        return Response.created(URI.create("http://localhost:8080/farm/rs/animal/find/" + pork.getId())).build();
+        return Response.created(URI.create("http://localhost:8080/farm/api/animal/find/" + pork.getId())).build();
     }
 
     @Path("update/pork/{id}")
@@ -101,7 +100,7 @@ public class AnimalEndpoint {
     public Response update(@PathParam("id") long id, Pork p){
         Pork pork = em.find(Pork.class, id);
         pork.setAge(p.getAge());
-        pork.setFarm(p.getFarm());
+        //pork.setFarm(p.getFarm());
         pork.setName(p.getName());
         pork.setFieldOfUse(p.getFieldOfUse());
         em.merge(pork);

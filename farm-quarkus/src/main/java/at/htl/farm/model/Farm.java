@@ -18,11 +18,11 @@ public class Farm {
     private Long id;
     private String location;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "farm", cascade = CascadeType.ALL)
-    private Set<Animal> animals;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Animal> animals;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "farm", cascade = CascadeType.ALL)
-    private Set<Field> fields;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Field> fields;
 
     //region Constructor
     public Farm() {
@@ -48,37 +48,33 @@ public class Farm {
 
     public void addAnimal(Animal a) {
         if (animals == null)
-            animals = new HashSet<>();
-        a.setFarm(this);
+            animals = new LinkedList<>();
         animals.add(a);
     }
 
     public void removeAnimal(Animal a) {
         if (animals != null && animals.contains(a)) {
             animals.remove(a);
-            a.setFarm(null);
         }
     }
 
     public void addField(Field f) {
         if (fields == null)
-            fields = new HashSet<>();
-        f.setFarm(this);
+            fields = new LinkedList<>();
         fields.add(f);
     }
 
     public void removeField(Field f) {
         if (fields != null && fields.contains(f)) {
             fields.remove(f);
-            f.setFarm(null);
         }
     }
 
-    public Set<Animal> getAnimals() {
+    public List<Animal> getAnimals() {
         return animals;
     }
 
-    public Set<Field> getFields() {
+    public List<Field> getFields() {
         return fields;
     }
     //endregion

@@ -17,9 +17,8 @@ public class Animal {
     protected String name;
     protected int age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    protected Farm farm;
+    @Column(name="DTYPE", insertable = false, updatable = false)
+    private String dType;
 
     //region Constructor
     public Animal() {
@@ -44,14 +43,6 @@ public class Animal {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Farm getFarm() {
-        return farm;
-    }
-
-    public void setFarm(Farm farm) {
-        this.farm = farm;
     }
 
     public int getAge() {

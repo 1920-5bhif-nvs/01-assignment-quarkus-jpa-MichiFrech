@@ -17,11 +17,6 @@ public class Field {
     private int hectare;
     private String plantedSeeds;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @XmlTransient
-    protected Farm farm;
-
     //region Constructor
     public Field() {
     }
@@ -53,12 +48,5 @@ public class Field {
         this.plantedSeeds = plantedSeeds;
     }
 
-    public Farm getFarm() {
-        return farm;
-    }
-
-    public void setFarm(Farm farm) {
-        this.farm = farm;
-    }
     //endregion
 }

@@ -17,7 +17,6 @@ public class FarmEndpoint {
     @Inject
     EntityManager em;
 
-    @Path("findall")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

@@ -72,7 +72,7 @@ public class FieldEndpoint {
     public Response newField(Field f) {
         em.persist(f);
         em.flush();
-        return Response.created(URI.create("http://localhost:8080/farm/rs/field/find/" + f.getId())).build();
+        return Response.created(URI.create("http://localhost:8080/farm/api/field/find/" + f.getId())).build();
     }
 
     @Path("update/{id}")
